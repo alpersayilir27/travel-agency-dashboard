@@ -48,9 +48,9 @@ const dashboard = () => {
                 id={id.toString()}
                 name={name}
                 imageUrl={imageUrls[0]}
-                location={itinerary?.[0]?.location ?? ''}
+                location={itinerary?.[0]?.location ?? ""}
                 tags={tags}
-                price={estimatedPrice}      
+                price={estimatedPrice}
               />
             ))}
         </div>
