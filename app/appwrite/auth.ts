@@ -4,7 +4,12 @@ import { redirect } from 'react-router';
 
 export const loginWithGoogle = async () => {
     try {
-        account.createOAuth2Session(OAuthProvider.Google);
+        // account.createOAuth2Session(OAuthProvider.Google);
+        account.createOAuth2Session(
+  OAuthProvider.Google,
+  'http://localhost:5173',
+  'http://localhost:5173/sign-in'
+);
     } catch (e) {
         console.log("loginWithGoogle",e);
     }
@@ -34,9 +39,12 @@ export const getUser = async () => {
                 Query.select(["name", "email", "imageUrl", "joinedAt", "accountId"])
 
             ]
-        )
+        );
+
+        return documents[0];
     } catch (e) {
         console.log(e);
+        return null;
     }
 }
 
@@ -115,7 +123,7 @@ export const storeUserData = async () => {
     }
 }
 
-export const getExistingUser = async () => {
+export const getExistingUser = async (userId: string) => {
     try {
         const user = await account.get();
 
